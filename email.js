@@ -131,11 +131,11 @@ router.post('/email', function (req, res) {
         '<p style="FONT-SIZE: 24px; MARGIN-BOTTOM: 1em; FONT-FAMILY: geneve, arial, helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #2d2d2d; TEXT-ALIGN: left; LINE-HEIGHT: 37px; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly" align="left"><span style="FONT-SIZE: 16px; LINE-HEIGHT: 25px"><strong>Dear Customer</strong></span>,</p>' +
         '<p style="FONT-SIZE: 14px; MARGIN-BOTTOM: 1em; FONT-FAMILY: arial, helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #575757; TEXT-ALIGN: left; LINE-HEIGHT: 22px; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly" align="left">This is to remind you that your '+msgbody+' payment is over-due and the debt needs to be settled as per the borrowing terms. Attached here is the ' + demand + '.<br />' +
         '&nbsp;<br />' +
-        '<p style="FONT-SIZE: 14px; MARGIN-BOTTOM: 1em; FONT-FAMILY: arial, helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #575757; TEXT-ALIGN: left; LINE-HEIGHT: 22px; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly" align="left">For any queries, contact Remedial Credit Department on phone numbers: '+phones+'</p>' +
+        '<p style="FONT-SIZE: 14px; MARGIN-BOTTOM: 1em; FONT-FAMILY: arial, helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #575757; TEXT-ALIGN: left; LINE-HEIGHT: 22px; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly" align="left">For any queries, contact Collections Department on phone numbers: '+phones+'</p>' +
         '<p style="FONT-SIZE: 14px; MARGIN-BOTTOM: 1em; FONT-FAMILY: arial, helvetica, sans-serif; MARGIN-TOP: 0px; COLOR: #575757; TEXT-ALIGN: left; LINE-HEIGHT: 22px; BACKGROUND-COLOR: transparent; mso-line-height-rule: exactly" align="left">Yours Faithfully,<br />' +
         '<br />' +
         '<strong>Head,</strong><br />' +
-        '<strong>Remedial Credit Department,</strong><br />' +
+        '<strong>Collections Department,</strong><br />' +
         '<strong>Credit Management Division,</strong><br />' +
         '<strong>Co-operative Bank Of Kenya Ltd</strong><br />' +
         '</p>' +

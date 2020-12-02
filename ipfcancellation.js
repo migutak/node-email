@@ -61,7 +61,7 @@ router.post('/email', function (req, res) {
   var mailOptions = {
     from: letter_data.branchemail,
     to: letter_data.email,
-    subject: "IPF Cancellation - " + letter_data.custname + " Policy No: "+ letter_data.policynumber,
+    subject: "IPF Cancellation - " + letter_data.custname + " ( Policy No: "+ letter_data.policynumber + " )",
     // text: "Text. ......",
     html: '<h5>Dear Sir/Madam:</h5>' +
       'Please find attached IPF cancellation letter for the above customer.<br>' +
@@ -76,8 +76,6 @@ router.post('/email', function (req, res) {
       '<hr>' ,
     attachments: [
       {
-        //filename: 'Demand 1',
-        // path: '/home/ecollectadmin/demandletters/016C72278352032019-03-15demand1.docx'
         path: letter_data.path
       }
     ]
