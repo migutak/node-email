@@ -1,17 +1,18 @@
-FROM node:12.9.1-alpine
+FROM node:16-buster-slim
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN chown node:node -R /app
+USER node
+# Install app dependencies
+COPY --chown=node package*.json ./
 RUN npm install --production
 
 # Bundle app source code
 COPY --chown=node . .
 
-# && usermod -aG sudo node
-USER node
 EXPOSE 8005
 
 CMD ["node" , "index.js"]
 
-# docker build -t 172.16.204.72:5100/node-email:5.0 .
+# docker build -t migutak/node-email:4.1 .
