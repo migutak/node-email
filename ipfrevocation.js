@@ -2,14 +2,11 @@
 const nodemailer = require("nodemailer");
 var express = require('express');
 var router = express.Router();
-const bodyParser = require("body-parser");
 const cors = require('cors');
+var data = require('./data.js');
 
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-router.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
 router.use(cors())
 
 router.post('/email', function (req, res) {
@@ -22,31 +19,15 @@ router.post('/email', function (req, res) {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: data.smtpserver,
+    port: data.smtpport,
     secure: false, // true for 465, false for other ports
-    auth: {
-      user: 'abdiel.funk26@ethereal.email',
-      pass: '3HWTWq9gm2TgDtssNP'
-    }
-  });
-
-  // verify connection configuration
-  transporter.verify(function (error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Server is ready to take our messages");
-    }
-  });
-
-  /* comment out for production
-  var transporter = nodemailer.createTransport({
-    host: "192.168.0.39",
-    port: 25,
-    secure: false, // upgrade later with STARTTLS
     tls: { rejectUnauthorized: false },
-    debug: true
+    debug: true,
+    auth: {
+      user: data.user,
+      pass: data.pass
+    }
   });
 
   // verify connection configuration
@@ -56,10 +37,10 @@ router.post('/email', function (req, res) {
     } else {
       console.log("Server is ready to take our messages");
     }
-  });*/
+  });
 
   var mailOptions = {
-    from: letter_data.branchemail,
+    from: 'ecollect@co-opbank.co.ke',
     to: letter_data.email,
     cc: GUARANTORS_EMAIL,
     subject: "IPF Revocation",

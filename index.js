@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const fs = require('fs');
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
 const router = express.Router();
 const cors = require('cors')
 
@@ -16,8 +14,11 @@ router.get('/', function (req, res) {
     res.json({ message: 'Email service ready!' }); 
   });
   
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true}));
+  //app.use(bodyParser.json());
+  //app.use(bodyParser.urlencoded({extended: true}));
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+
   app.use(cors())
 
 

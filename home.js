@@ -2,19 +2,15 @@
 const nodemailer = require("nodemailer");
 var express = require('express');
 var router = express.Router();
-const bodyParser = require("body-parser");
 const cors = require('cors');
 
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-router.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
 router.use(cors())
 
 router.post('/email', function (req, res) {
   const letter_data = req.body;
-  console.log(letter_data);
+
   const GUARANTORS_EMAIL = '';
   if(req.body.guarantor && req.body.guarantor.length > 0) {
     GUARANTORS_EMAIL = req.body.guarantor.email;
