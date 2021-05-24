@@ -83,7 +83,7 @@ router.post('/email', function (req, res) {
   });
 
   var mailOptions = {
-    from: letter_data.branchemail,
+    from: 'ecollect@co-opbank.co.ke',
     to: letter_data.email,
     cc: g_email,
     subject: "[Co-op Bank Collections]" + demand,
@@ -194,7 +194,6 @@ router.post('/email', function (req, res) {
         cid: 'unique@whatsapp_logo.ee' //same cid value as in the html img src
       },
       {
-        // filename: 'CoopDemandNotice.pdf',
         path: letter_data.file
       }
     ]

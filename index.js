@@ -6,9 +6,12 @@ const cors = require('cors')
 
 //include the routes file
 var email = require('./email');
+var ipfrevocation = require('./ipfrevocation');
+var ipfcancellation = require('./ipfcancellation');
 
-////////
 app.use('/demandemail', email);
+app.use('/ipfrevocation', ipfrevocation);
+app.use('/ipfcancellation', ipfcancellation);
 
 router.get('/', function (req, res) {
     res.json({ message: 'Email service ready!' }); 

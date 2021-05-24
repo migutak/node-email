@@ -40,7 +40,7 @@ router.post('/email', function (req, res) {
   });
 
   var mailOptions = {
-    from: letter_data.branchemail,
+    from: 'ecollect@co-opbank.co.ke',
     to: letter_data.email,
     subject: "IPF Cancellation - " + letter_data.custname + " ( Policy No: "+ letter_data.policynumber + " )",
     // text: "Text. ......",

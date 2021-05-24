@@ -5,17 +5,17 @@ var router = express.Router();
 const cors = require('cors');
 
 app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+app.use(express.json());
 router.use(cors())
 
 router.post('/email', function (req, res) {
   const letter_data = req.body;
 
   const GUARANTORS_EMAIL = '';
-  if(req.body.guarantor && req.body.guarantor.length > 0) {
+  if (req.body.guarantor && req.body.guarantor.length > 0) {
     GUARANTORS_EMAIL = req.body.guarantor.email;
   }
-  
+
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
