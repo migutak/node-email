@@ -8,8 +8,8 @@ var data = require('./data.js');
 
 var data = require('./data.js');
 
-const LETTERS_DIR = data.filePath;
-const IMAGE_DIR = data.imagePath;
+//const LETTERS_DIR = data.filePath;
+//const IMAGE_DIR = data.imagePath;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,7 +24,7 @@ router.post('/email', function (req, res) {
 
 
   if (letter_data.title == 'overduecc' || letter_data.title == 'prelistingcc' || letter_data.title == 'suspension') {
-    msgbody = 'credit card';
+    msgbody = 'Credit card';
     phones = '0711049639/0711049979/0711049932';
   }
 
@@ -175,22 +175,22 @@ router.post('/email', function (req, res) {
     attachments: [
       {
         filename: 'coopbank_logo.png',
-        path: IMAGE_DIR + 'coopbank_logo.png',
+        path: 'images/coopbank_logo.png',
         cid: 'unique@kreata.ee' //same cid value as in the html img src
       },
       {
         filename: 'facebook_logo.png',
-        path: IMAGE_DIR + 'facebook_logo.png',
+        path: 'images/facebook_logo.png',
         cid: 'unique@facebook_logo.ee' //same cid value as in the html img src
       },
       {
         filename: 'twitter_logo.png',
-        path: IMAGE_DIR + 'twitter_logo.png',
+        path: 'images/twitter_logo.png',
         cid: 'unique@twitter_logo.ee' //same cid value as in the html img src
       },
       {
         filename: 'whatsapp_logo.png',
-        path: IMAGE_DIR + 'whatsapp_logo.png',
+        path: 'images/whatsapp_logo.png',
         cid: 'unique@whatsapp_logo.ee' //same cid value as in the html img src
       },
       {
