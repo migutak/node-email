@@ -2,11 +2,16 @@
 const nodemailer = require("nodemailer");
 var express = require('express');
 var router = express.Router();
+const app = express();
 const cors = require('cors');
 var data = require('./data.js');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+
 router.use(cors())
 
 router.post('/email', function (req, res) {
