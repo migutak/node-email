@@ -2,20 +2,24 @@
 const nodemailer = require("nodemailer");
 var express = require('express');
 var router = express.Router();
+const app = express();
 const cors = require('cors');
 var data = require('./data.js');
 
 app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+app.use(express.json());
+
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 router.use(cors())
 
 router.post('/email', function (req, res) {
   const letter_data = req.body;
   const GUARANTORS_EMAIL = '';
-  if(req.body.guarantor && req.body.guarantor.length > 0) {
+  if (req.body.guarantor && req.body.guarantor.length > 0) {
     GUARANTORS_EMAIL = req.body.guarantor.email;
   }
-  
+
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
@@ -42,7 +46,7 @@ router.post('/email', function (req, res) {
   var mailOptions = {
     from: 'ecollect@co-opbank.co.ke',
     to: letter_data.email,
-    subject: "IPF Cancellation - " + letter_data.custname + " ( Policy No: "+ letter_data.policynumber + " )",
+    subject: "IPF Cancellation - " + letter_data.custname + " ( Policy No: " + letter_data.policynumber + " )",
     // text: "Text. ......",
     html: '<h5>Dear Sir/Madam:</h5>' +
       'Please find attached IPF cancellation letter for the above customer.<br>' +
@@ -54,7 +58,7 @@ router.post('/email', function (req, res) {
       'Best Regards,<br>' +
       'Co-operative Bank of Kenya' +
       '<br> <br>' +
-      '<hr>' ,
+      '<hr>',
     attachments: [
       {
         path: letter_data.path

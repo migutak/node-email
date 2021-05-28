@@ -13,15 +13,18 @@ var data = require('./data.js');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+
 router.use(cors())
 
-router.post('/email', function (req, res) {
+router.post('/email', (req, res) => {
   const letter_data = req.body;
-  const GUARANTORS = req.body.guarantors;
+  //const GUARANTORS = req.body.guarantors;
   let demand = 'Demand Notice'
   let phones = '0711049937/0711049195/0711049517';
   let msgbody = 'loan';
-
 
   if (letter_data.title == 'overduecc' || letter_data.title == 'prelistingcc' || letter_data.title == 'suspension') {
     msgbody = 'Credit card';

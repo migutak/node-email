@@ -15,4 +15,4 @@ EXPOSE 8005
 
 CMD ["node" , "index.js"]
 
-# docker build -t migutak/node-email:4.1 .
+# docker build -t migutak/node-email:4.3 .
