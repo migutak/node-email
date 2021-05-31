@@ -1,4 +1,6 @@
 const express = require('express');
+var morgan = require('morgan');
+const ecsFormat = require('@elastic/ecs-morgan-format');
 const app = express();
 //const bodyParser = require("body-parser");
 const router = express.Router();
@@ -8,6 +10,8 @@ const cors = require('cors')
 var email = require('./email');
 var ipfrevocation = require('./ipfrevocation');
 var ipfcancellation = require('./ipfcancellation');
+
+app.use(morgan(ecsFormat()))
 
 app.use('/demandemail', email);
 app.use('/ipfrevocation', ipfrevocation);

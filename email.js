@@ -6,7 +6,6 @@ const app = express();
 const cors = require('cors');
 var data = require('./data.js');
 
-var data = require('./data.js');
 
 //const LETTERS_DIR = data.filePath;
 //const IMAGE_DIR = data.imagePath;
