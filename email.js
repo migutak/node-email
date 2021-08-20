@@ -20,6 +20,7 @@ router.use(cors())
 
 router.post('/email', (req, res) => {
   const letter_data = req.body;
+  console.log(letter_data);
   //const GUARANTORS = req.body.guarantors;
   let demand = 'Demand Notice'
   let phones = '0711049937/0711049195/0711049517';
@@ -88,7 +89,7 @@ router.post('/email', (req, res) => {
     from: 'ecollect@co-opbank.co.ke',
     to: letter_data.email,
     cc: g_email,
-    subject: "[Co-op Bank Collections]" + demand,
+    subject: "[Co-op Bank Collections] " + demand,
     // text: "Text. ......",
     html: '<body style="overflow: auto; padding:0; margin:0; font-size: 14px; font-family: arial, helvetica, sans-serif; cursor:auto; background-color:#feffff">' +
       '<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#feffff">' +
