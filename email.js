@@ -5,7 +5,16 @@ var router = express.Router();
 const app = express();
 const cors = require('cors');
 var data = require('./data.js');
-
+const fs = require('fs');
+require('log-timestamp');
+var Minio = require("minio");
+var minioClient = new Minio.Client({
+  endPoint: process.env.MINIO_ENDPOINT || '127.0.0.1',
+  port: process.env.MINIO_PORT || 9005,
+  useSSL: false,
+  accessKey: process.env.ACCESSKEY || 'AKIAIOSFODNN7EXAMPLE',
+  secretKey: process.env.SECRETKEY || 'wJalrXUtnFEMIK7MDENGbPxRfiCYEXAMPLEKEY'
+});
 
 //const LETTERS_DIR = data.filePath;
 //const IMAGE_DIR = data.imagePath;
@@ -20,7 +29,7 @@ router.use(cors())
 
 router.post('/email', (req, res) => {
   const letter_data = req.body;
-  console.log(letter_data);
+  //console.log(letter_data);
   //const GUARANTORS = req.body.guarantors;
   let demand = 'Demand Notice'
   let phones = '0711049937/0711049195/0711049517';
@@ -35,6 +44,15 @@ router.post('/email', (req, res) => {
   if (letter_data.branchemail == null || letter_data.branchemail == undefined) {
     letter_data.branchemail = 'Contact Centre Team <ContactCentreTeam@co-opbank.co.ke>';
   };
+
+  // get file from minio
+  minioClient.fGetObject('demandletters', letter_data.file, `${__dirname}/files/` + letter_data.file, function (err) {
+    if (err) {
+      return console.log(err)
+    }
+    console.log(`downloaded successfully from minio at ${new Date()}`);
+  })
+  // end get files from mino
 
   if (letter_data.title == 'prelisting' || letter_data.title == 'prelistingcc' || letter_data.title == 'prelistingremedial') {
     demand = 'Pre-Listing Notice'
@@ -197,7 +215,7 @@ router.post('/email', (req, res) => {
         cid: 'unique@whatsapp_logo.ee' //same cid value as in the html img src
       },
       {
-        path: letter_data.file
+        path: `${__dirname}/files/` + letter_data.file
       }
     ]
   };
@@ -207,10 +225,20 @@ router.post('/email', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
+
       res.json({
         result: 'fail',
         message: "message not sent"
       })
+      //delete file from local
+      fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+
+        //file removed
+      })// end delete file from local
     }
     console.log("info > ", info)
     res.json({
@@ -218,6 +246,14 @@ router.post('/email', (req, res) => {
       message: "message sent",
       info: info
     })
+    // delete file from local
+    fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      //file removed
+    })// end delete file from local
   })
 });
 

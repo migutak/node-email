@@ -11,7 +11,7 @@ var email = require('./email');
 var ipfrevocation = require('./ipfrevocation');
 var ipfcancellation = require('./ipfcancellation');
 
-app.use(morgan(ecsFormat()))
+//app.use(morgan(ecsFormat()))
 
 app.use('/demandemail', email);
 app.use('/ipfrevocation', ipfrevocation);
