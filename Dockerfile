@@ -1,4 +1,4 @@
-FROM node:16-buster-slim
+FROM node:16-slim
 
 WORKDIR /app
 
@@ -15,4 +15,4 @@ EXPOSE 8005
 
 CMD ["node" , "index.js"]
 
-# docker build -t migutak/node-email:4.4 .
+# docker build -t migutak/node-email:4.7 .
