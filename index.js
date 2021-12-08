@@ -2,7 +2,7 @@ const express = require('express');
 var morgan = require('morgan');
 const ecsFormat = require('@elastic/ecs-morgan-format');
 const app = express();
-//const bodyParser = require("body-parser");
+require('log-timestamp');
 const router = express.Router();
 const cors = require('cors')
 

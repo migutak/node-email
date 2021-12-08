@@ -10,7 +10,7 @@ require('log-timestamp');
 var Minio = require("minio");
 var minioClient = new Minio.Client({
   endPoint: process.env.MINIO_ENDPOINT || '127.0.0.1',
-  port: process.env.MINIO_PORT || 9005,
+  port: process.env.MINIO_PORT ? parseInt(process.env.MINIO_PORT, 10) : 9005,
   useSSL: false,
   accessKey: process.env.ACCESSKEY || 'AKIAIOSFODNN7EXAMPLE',
   secretKey: process.env.SECRETKEY || 'wJalrXUtnFEMIK7MDENGbPxRfiCYEXAMPLEKEY'
@@ -18,9 +18,6 @@ var minioClient = new Minio.Client({
 
 //const LETTERS_DIR = data.filePath;
 //const IMAGE_DIR = data.imagePath;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
