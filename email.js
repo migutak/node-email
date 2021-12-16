@@ -221,11 +221,11 @@ router.post('/email', (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      console.log('error',error);
 
       res.json({
         result: 'fail',
-        message: "message not sent"
+        message: "Email message not sent"
       })
       //delete file from local
       fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
