@@ -45,7 +45,7 @@ router.post('/email', function (req, res) {
   });
 
   var mailOptions = {
-    from: 'ecollect@co-opbank.co.ke',
+    from: data.user,
     to: letter_data.email,
     cc: GUARANTORS_EMAIL,
     subject: "IPF Revocation",

@@ -10,12 +10,14 @@ const cors = require('cors')
 var email = require('./email');
 var ipfrevocation = require('./ipfrevocation');
 var ipfcancellation = require('./ipfcancellation');
+var callbackshare = require('./callbackshare');
 
 //app.use(morgan(ecsFormat()))
 
 app.use('/demandemail', email);
 app.use('/ipfrevocation', ipfrevocation);
 app.use('/ipfcancellation', ipfcancellation);
+app.use('/callbackshare', callbackshare);
 
 router.get('/', function (req, res) {
     res.json({ message: 'Email service ready!' }); 

@@ -101,7 +101,7 @@ router.post('/email', (req, res) => {
   });
 
   var mailOptions = {
-    from: 'ecollect@co-opbank.co.ke',
+    from: data.user,
     to: letter_data.email,
     cc: g_email,
     subject: "[Co-op Bank Collections] " + demand,
