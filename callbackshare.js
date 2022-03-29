@@ -63,13 +63,12 @@ router.post('/email', (req, res) => {
 
     attachments: [
       {
-        path: `${__dirname}/files/` + letter_data.file
+        path: `${__dirname}/files/` + letter_data.filename
       }
     ]
   };
 
   // send email
-
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log('error', error);
@@ -79,13 +78,13 @@ router.post('/email', (req, res) => {
         message: "Email message not sent"
       })
       //delete file from local
-      fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+      fs.unlink(`${__dirname}/files/` + letter_data.filename, (err) => {
         if (err) {
           console.error(err)
           return
         }
 
-        //file removed
+        //file removed 
       })// end delete file from local
     }
     console.log("info > ", info)
@@ -95,7 +94,7 @@ router.post('/email', (req, res) => {
       info: info
     })
     // delete file from local
-    fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+    fs.unlink(`${__dirname}/files/` + letter_data.filename, (err) => {
       if (err) {
         console.error(err)
         return
