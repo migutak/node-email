@@ -11,28 +11,30 @@ var email = require('./email');
 var ipfrevocation = require('./ipfrevocation');
 var ipfcancellation = require('./ipfcancellation');
 var callbackshare = require('./callbackshare');
+var passwordreset = require('./passwordreset');
+var inviteuser = require('./inviteuser');
 
 //app.use(morgan(ecsFormat()))
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(cors())
 
 app.use('/demandemail', email);
 app.use('/ipfrevocation', ipfrevocation);
 app.use('/ipfcancellation', ipfcancellation);
 app.use('/callbackshare', callbackshare);
+app.use('/passwordreset', passwordreset);
+app.use('/inviteuser', inviteuser);
 
 router.get('/', function (req, res) {
     res.json({ message: 'Email service ready!' }); 
   });
   
-  //app.use(bodyParser.json());
-  //app.use(bodyParser.urlencoded({extended: true}));
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-
-  app.use(cors())
-
 
   //add the router
 app.use('/', router);
-app.listen(process.env.port || 8005);
+app.listen(process.env.port || 8050);
 
-console.log('Running at Port 8005');
+console.log('Running at Port 8050');
