@@ -26,7 +26,7 @@ router.use(cors())
 
 router.post('/email', (req, res) => {
   const letter_data = req.body;
-  //console.log(letter_data);
+  console.log(letter_data);
   //const GUARANTORS = req.body.guarantors;
   let demand = 'Demand Notice'
   let phones = '0711049937/0711049195/0711049517';
@@ -43,7 +43,8 @@ router.post('/email', (req, res) => {
   };
 
   // get file from minio
-  minioClient.fGetObject('demandletters', letter_data.file, `${__dirname}/files/` + letter_data.file, function (err) {
+  // minioClient.fGetObject('demandletters', letter_data.file, `${__dirname}/files/` + letter_data.file, function (err) {
+  minioClient.fGetObject('demandletters', letter_data.file, '/tmp/' + letter_data.file, function (err) {
     if (err) {
       return console.log(err)
     }
@@ -191,7 +192,7 @@ router.post('/email', (req, res) => {
       }
     ]*/
     attachments: [
-      {
+      /*{
         filename: 'coopbank_logo.png',
         path: 'images/coopbank_logo.png',
         cid: 'unique@kreata.ee' //same cid value as in the html img src
@@ -210,9 +211,9 @@ router.post('/email', (req, res) => {
         filename: 'whatsapp_logo.png',
         path: 'images/whatsapp_logo.png',
         cid: 'unique@whatsapp_logo.ee' //same cid value as in the html img src
-      },
+      },*/
       {
-        path: `${__dirname}/files/` + letter_data.file
+        path: '/tmp/' + letter_data.file
       }
     ]
   };
@@ -228,7 +229,7 @@ router.post('/email', (req, res) => {
         message: "Email message not sent"
       })
       //delete file from local
-      fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+      fs.unlink('/tmp/' + letter_data.file, (err) => {
         if (err) {
           console.error(err)
           return
@@ -244,7 +245,7 @@ router.post('/email', (req, res) => {
       info: info
     })
     // delete file from local
-    fs.unlink(`${__dirname}/files/` + letter_data.file, (err) => {
+    fs.unlink('/tmp/' + letter_data.file, (err) => {
       if (err) {
         console.error(err)
         return
